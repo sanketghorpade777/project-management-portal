@@ -143,6 +143,13 @@ h2 {
   z-index: -1;
   opacity: 0; }
 
+  .control select,option {
+    background: transparent;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  
 .control__indicator {
   position: absolute;
   top: 2px;

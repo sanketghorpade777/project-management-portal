@@ -7,14 +7,16 @@ function Login() {
     const [usertype,setUserType] = useState('');
     console.log(username,password,usertype);
 
-  const HandleLogin= (e) => {
+  const HandleLogin= async(e) => {
       e.preventDefault();
     
-    useEffect(() => {
-        axios.get('/').then(res => setUserdata(res.data))
+    // useEffect(() => {
+        await axios.post('/',{
+          username,password,usertype
+        });
           
         console.log(userdata);
-})
+// })
 }
     return (
     <>
@@ -30,16 +32,16 @@ function Login() {
           <div className="col-md-8">
             <div className="mb-4">
               <h3>Sign In</h3>
-              <p className="mb-4">Online Project Management System</p>
+              {/* <p className="mb-4">Online Project Management System</p> */}
             </div>
             <form onSubmit={HandleLogin} method="post">
             <div className="form-group first mb-4">
                 <label htmlFor="usertype">Select User type</label>
                 <select className="form-control" id="usertype" onChange={(e) => setUserType(e.target.value)} required>
-                  <option  className="form-control" value={''} selected>Select User Type</option>
-                <option  className="form-control" value={'admin'}>Admin</option>
-                <option  className="form-control" value={'employee'}>Employee</option>
-                <option  className="form-control" value={'client'}>Client</option>
+                  <option  className="form-control" defaultValue={''} selected>Select User Type</option>
+                <option  className="form-control" defaultValue={'admin'}>Admin</option>
+                <option  className="form-control" defaultValue={'employee'}>Employee</option>
+                <option  className="form-control" defaultValue={'client'}>Client</option>
                 
                 </select>
               </div>
