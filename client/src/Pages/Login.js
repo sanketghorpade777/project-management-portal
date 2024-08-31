@@ -1,23 +1,34 @@
 import {React,useState,useEffect} from 'react';
 import axios from 'axios';
+import {toast} from 'react-hot-toast';
 function Login() {
   const [userdata,setUserdata] = useState(null);
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     const [usertype,setUserType] = useState('');
     console.log(username,password,usertype);
-
+  
   const HandleLogin= async(e) => {
       e.preventDefault();
-    
-    // useEffect(() => {
-        await axios.post('/',{
+     try{
+
+      const Response =  await axios.post('/api/login',{
           username,password,usertype
         });
-          
+          if(Response.data.status === 400){
+            toast.error(Response.data.message);
+          }
+          toast.success(Response.data.message);
         console.log(userdata);
-// })
+        setUserdata(Response.data);
+      }catch(err){
+        console.log(err);
+      }
 }
+
+
+
+
     return (
     <>
      

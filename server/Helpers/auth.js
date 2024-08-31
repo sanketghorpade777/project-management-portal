@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const SECRET_KEY = process.env.JWT_SECREAT; 
 
 
 const hashPassword = (password) => {
@@ -20,12 +20,13 @@ const hashPassword = (password) => {
       })
     }
       const comparePassword = (password,hashed) => {
+       console.log(password,hashed);
         return bcrypt.compare(password,hashed)
       }
 
 
 
-      const SECRET_KEY = process.env.JWT_SECREAT; 
+   
       const generateToken = (user) => {
           return jwt.sign({ id: user._id, email: user.email }, SECRET_KEY, {
               expiresIn: '1h'
