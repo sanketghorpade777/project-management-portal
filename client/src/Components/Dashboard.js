@@ -3,6 +3,9 @@ import React from 'react';
 // import Sidebar from './Sidebar';
 import Footer from './Footer';
 function Dashboard() {
+   const token = localStorage.getItem('jwttoken');
+    console.log(token);
+
   return (
     <>
  <div className="container-scroller" >

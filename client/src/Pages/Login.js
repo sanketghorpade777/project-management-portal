@@ -1,4 +1,5 @@
-import {React,useState,useEffect} from 'react';
+import {React,useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
 function Login() {
@@ -6,21 +7,23 @@ function Login() {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     const [usertype,setUserType] = useState('');
-    console.log(username,password,usertype);
-  
+   
+    const navigate = useNavigate();
   const HandleLogin= async(e) => {
       e.preventDefault();
      try{
 
-      const Response =  await axios.post('/api/login',{
+      const Response =  await axios.post('/login',{
           username,password,usertype
         });
           if(Response.data.status === 400){
             toast.error(Response.data.message);
           }
           toast.success(Response.data.message);
-        console.log(userdata);
+          localStorage.setItem('jwtToken',Response.data.token);
+        console.log(Response.data);
         setUserdata(Response.data);
+        navigate('/dashboard');
       }catch(err){
         console.log(err);
       }
