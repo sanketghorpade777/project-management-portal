@@ -1,30 +1,36 @@
-import React from 'react';
-// import Header from './Header';
-// import Sidebar from './Sidebar';
+import {React,useState,useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+import Header from './Header';
+import Sidebar from './Sidebar';
 import Footer from './Footer';
+import { AuthContext } from './../../AuthContext/authContext';
 function Dashboard() {
-   const token = localStorage.getItem('jwttoken');
-    console.log(token);
+   const navigate = useNavigate();
+   const {token,loading} = useContext(AuthContext);
+   if(!token){
+       navigate('/');
+   }
+
+
+
+
 
   return (
     <>
  <div className="container-scroller" >
-    <div className="container-fluid page-body-wrapper">
- 
-      {/* <Header/> */}
- </div> 
- 
+      <Header/>
+      <div className="container-fluid page-body-wrapper">
+
+      <Sidebar/>
       <div className="main-panel">
-
-
-
           <div className="content-wrapper">
             <div className="page-header">
               <h3 className="page-title">
                 <span className="page-title-icon bg-gradient-primary text-white me-2">
                   <i className="mdi mdi-home" />
-                </span> Dashboard
+                </span>Client Dashboard
               </h3>
+       
               <nav aria-label="breadcrumb">
                 <ul className="breadcrumb">
                   <li className="breadcrumb-item active" aria-current="page">
@@ -350,6 +356,7 @@ function Dashboard() {
   
       
          <Footer/>
+        </div>
         </div>
         </div>
     </>

@@ -7,20 +7,22 @@ const {comparePassword} = require('../Helpers/auth');
 const login = async(req,res) => {
   try{
   const {username,password,usertype} = req.body;
-  console.log(username,password,usertype);
+ 
 
       const userDetails = await Auth.findOne({email:username});
+
       if(!userDetails){
         res.status(400).send({message:" Record Not Found" , success:false});
       }
+
       const verifyPassword =  await comparePassword(password,userDetails.password);
-       if(verifyPassword){
+       if(verifyPassword && usertype === userDetails.userType){
 
         const token = await jwt.sign({ userId: userDetails._id }, process.env.JWT_SECREAT);
        return res.status(200).send({ success:true,message:"Login Successful",token:token,data:userDetails});
 
       
-   
+       
 
 
 
@@ -48,8 +50,10 @@ const login = async(req,res) => {
 
 
 
-const Register = (req,res) => {
-  res.send("passed from register");
+const Add_employee = (req,res) => {
+   console.log(req);
+
+  res.send("passed from Add_employee");
 }
 
 
@@ -60,5 +64,5 @@ const Register = (req,res) => {
 
 
 module.exports = {
-    login,Register
+    login,Add_employee,
 }

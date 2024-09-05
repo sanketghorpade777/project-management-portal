@@ -3,11 +3,12 @@ import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
 function Login() {
+
   const [userdata,setUserdata] = useState(null);
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     const [usertype,setUserType] = useState('');
-   
+   const [Token,setToken] = useState(null);
     const navigate = useNavigate();
   const HandleLogin= async(e) => {
       e.preventDefault();
@@ -21,9 +22,18 @@ function Login() {
           }
           toast.success(Response.data.message);
           localStorage.setItem('jwtToken',Response.data.token);
-        console.log(Response.data);
+          setToken(Response.data.token);
         setUserdata(Response.data);
-        navigate('/dashboard');
+       
+        if(Response.data.data.userType === 'admin'){
+          navigate('/admin-dashboard');
+        }else if(Response.data.data.userType === 'employee'){
+          navigate('/emp-dashboard');
+        }else if(Response.data.data.userType === 'client'){
+          navigate('/client-dashboard');
+        }else{
+          navigate('/');
+        }
       }catch(err){
         console.log(err);
       }
@@ -51,11 +61,11 @@ function Login() {
             <form onSubmit={HandleLogin} method="post">
             <div className="form-group first mb-4">
                 <label htmlFor="usertype">Select User type</label>
-                <select className="form-control" id="usertype" onChange={(e) => setUserType(e.target.value)} required>
-                  <option  className="form-control" defaultValue={''} selected>Select User Type</option>
-                <option  className="form-control" defaultValue={'admin'}>Admin</option>
-                <option  className="form-control" defaultValue={'employee'}>Employee</option>
-                <option  className="form-control" defaultValue={'client'}>Client</option>
+                <select className="form-control" id="usertype" defaultValue={''} onChange={(e) => setUserType(e.target.value)} required>
+                  <option  className="form-control" Value={''} selected>Select User Type</option>
+                <option  className="form-control" Value={'admin'}>Admin</option>
+                <option  className="form-control" Value={'employee'}>Employee</option>
+                <option  className="form-control" Value={'client'}>Client</option>
                 
                 </select>
               </div>
