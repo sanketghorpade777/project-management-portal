@@ -61,7 +61,7 @@ function Login() {
             <form onSubmit={HandleLogin} method="post">
             <div className="form-group first mb-4">
                 <label htmlFor="usertype">Select User type</label>
-                <select className="form-control" id="usertype" defaultValue={''} onChange={(e) => setUserType(e.target.value)} required>
+                <select className="form-control" id="usertype" defaultValue={''} onChange={ (e) => setUserType(e.target.value) } required>
                   <option  className="form-control" Value={''} selected>Select User Type</option>
                 <option  className="form-control" Value={'admin'}>Admin</option>
                 <option  className="form-control" Value={'employee'}>Employee</option>

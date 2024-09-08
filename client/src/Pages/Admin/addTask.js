@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../Components/Admin/Header';
 import Sidebar from '../../Components/Admin/Sidebar';
 import Footer from '../../Components/Admin/Footer';
-function addClient() {
+function addTask() {
   return (
     <div>
     <div className="container-scroller" >
@@ -15,8 +15,8 @@ function addClient() {
    <div className="col-12 grid-margin stretch-card">
              <div className="card">
                <div className="card-body">
-                 <h4 className="card-title">Add New Client</h4>
-                 <p className="card-description"> Add Client </p>
+                 <h4 className="card-title">Add New Task</h4>
+                 <p className="card-description"> Add Task </p>
                  <form className="forms-sample">
                    <div className="form-group">
                      <label htmlFor="exampleInputName1">Name</label>
@@ -69,4 +69,4 @@ function addClient() {
   )
 }
 
-export default addClient
+export default addTask

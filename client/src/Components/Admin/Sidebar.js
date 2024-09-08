@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
     <>
@@ -27,17 +27,18 @@ function Sidebar() {
             </li>
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span className="menu-title">Basic UI Elements</span>
+                <span className="menu-title">Project</span>
                 <i className="menu-arrow" />
                 <i className="mdi mdi-crosshairs-gps menu-icon" />
               </a>
               <div className="collapse" id="ui-basic">
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item">
-                    <a className="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                  
+                  
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+                    <a className="nav-link" href="pages/ui-features/dropdowns.html">New Project</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="pages/ui-features/typography.html">Typography</a>
@@ -47,46 +48,48 @@ function Sidebar() {
             </li>
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                <span className="menu-title">Icons</span>
+                <span className="menu-title">Tasks</span>
                 <i className="mdi mdi-contacts menu-icon" />
               </a>
               <div className="collapse" id="icons">
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item">
-                    <a className="nav-link" href="pages/icons/font-awesome.html">Font Awesome</a>
+               
+                    <Link to="/add-emp" className="nav-link">New Task</Link>
                   </li>
                 </ul>
               </div>
             </li>
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
-                <span className="menu-title">Forms</span>
+                <span className="menu-title">Clients</span>
                 <i className="mdi mdi-format-list-bulleted menu-icon" />
               </a>
               <div className="collapse" id="forms">
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item">
-                    <a className="nav-link" href="pages/forms/basic_elements.html">Form Elements</a>
+                    <a className="nav-link" href="pages/forms/basic_elements.html">New Client</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                <span className="menu-title">Charts</span>
+                <span className="menu-title">Employee</span>
                 <i className="mdi mdi-chart-bar menu-icon" />
               </a>
               <div className="collapse" id="charts">
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item">
-                    <a className="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                    
+                    <Link to="/add-emp" className="nav-link">New Employee</Link>
                   </li>
                 </ul>
               </div>
             </li>
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                <span className="menu-title">Tables</span>
+                <span className="menu-title">sdsd</span>
                 <i className="mdi mdi-table-large menu-icon" />
               </a>
               <div className="collapse" id="tables">
