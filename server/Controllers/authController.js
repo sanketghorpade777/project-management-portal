@@ -51,7 +51,7 @@ const login = async(req,res) => {
 
 
 const Add_employee = (req,res) => {
-   console.log(req);
+   console.log(req.body);
 
   res.send("passed from Add_employee");
 }

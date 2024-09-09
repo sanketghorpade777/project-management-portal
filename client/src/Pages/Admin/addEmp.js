@@ -1,4 +1,5 @@
 import {React,useState} from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from '../../Components/Admin/Header';
 import Sidebar from '../../Components/Admin/Sidebar';
@@ -12,8 +13,16 @@ function AddEmp() {
   const [upload,setUpload] = useState('');
   const [city,setCity] = useState('');
   const [address,setAddress] = useState('');
-  const HandleSubmit = () => {
-
+  const HandleSubmit = async(e) => {
+    e.preventDefault();
+     try{
+      const Response =  await axios.post('/api/admin/add-emp',{
+        name,email,password,gender,dept,upload,city,address
+        });
+        console.log(Response);
+      }catch(e){
+         console.log(e);
+      }
 
     console.log(name,email,password,gender,dept,upload,city,address);
 
@@ -49,29 +58,31 @@ function AddEmp() {
                       <div className="form-group">
                         <label htmlFor="exampleSelectGender">Gender</label>
                         <select className="form-select" id="exampleSelectGender" onChange={(e) => setGender(e.target.value) }>
-                          <option>Male</option>
-                          <option>Female</option>
+                          <option value='male'>Male</option>
+                          <option value='female'>Female</option>
                         </select>
                       </div>
 
                       <div className="form-group">
                         <label htmlFor="exampleSelectGender">Department</label>
                         <select className="form-select" id="exampleSelectGender" onChange={(e) => setDept(e.target.value) }>
-                          <option>Dev</option>
-                          <option>Design</option>
-                          <option>Testing</option>
-                          <option>Devops</option>
-                          <option>SEO</option>
+                          <option value='dev'>Dev</option>
+                          <option value='design'>Design</option>
+                          <option value='testing'>Testing</option>
+                          <option value='devops'>Devops</option>
+                          <option value='seo'>SEO</option>
                         </select>
 
                         
                       </div>
 
+
+                
                  
 
                       <div className="form-group">
                         <label>Profile Upload</label>
-                        <input type="file" name="img[]" className="file-upload-default" onChange={(e) => setUpload(e.target.value) }/>
+                        <input type="file" name="img" className="file-upload-default" onChange={(e) => setUpload(e.target.files) }/>
                         <div className="input-group col-xs-12">
                           <input type="text" className="form-control file-upload-info " disabled={true} placeholder="Upload Image" />
                           <span className="input-group-append">

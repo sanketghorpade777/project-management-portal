@@ -17,7 +17,7 @@ app.use(bodyparser.urlencoded({extended:false}));
 const routes = require('./Routes/authRoutes');
 
 app.post('/login',routes);
-app.post('/add-employee',routes);
+app.post('/api/admin/add-emp',routes);
 
 // const authRoutes = require('./Routes/authRoutes');
 // app.use('/api/auth', authRoutes);

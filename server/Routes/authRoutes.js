@@ -7,7 +7,7 @@ const controller = require('../Controllers/authController');
 
 
 router.post('/login',controller.login);
-router.post('/add-employee',controller.Add_employee);
+router.post('/api/admin/add-emp',controller.Add_employee);
 
 
 
