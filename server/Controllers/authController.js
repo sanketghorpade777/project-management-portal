@@ -1,7 +1,7 @@
 const Auth = require('../Models/Auth');
 const jwt = require("jsonwebtoken");
 const {comparePassword} = require('../Helpers/auth');
-
+const multer = require('multer');
 
 
 const login = async(req,res) => {
@@ -51,7 +51,7 @@ const login = async(req,res) => {
 
 
 const Add_employee = (req,res) => {
-   console.log(req.body);
+   console.log(req.files.filename);
 
   res.send("passed from Add_employee");
 }

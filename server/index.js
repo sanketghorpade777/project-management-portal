@@ -11,9 +11,8 @@ const connectDB = require('./config/db');
 connectDB();
 
 app.use(cors());
-app.use(express.json());
 app.use(bodyparser.urlencoded({extended:false}));
-// app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.json());
 const routes = require('./Routes/authRoutes');
 
 app.post('/login',routes);

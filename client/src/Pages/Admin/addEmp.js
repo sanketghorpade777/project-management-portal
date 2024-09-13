@@ -16,9 +16,13 @@ function AddEmp() {
   const HandleSubmit = async(e) => {
     e.preventDefault();
      try{
-      const Response =  await axios.post('/api/admin/add-emp',{
+
+
+  
+
+      const Response =  await axios.post('api/admin/add-emp',{
         name,email,password,gender,dept,upload,city,address
-        });
+      });
         console.log(Response);
       }catch(e){
          console.log(e);
@@ -42,7 +46,7 @@ function AddEmp() {
                   <div className="card-body">
                     <h4 className="card-title">Add New Employee</h4>
                     {/* <p className="card-description"> Add Employee </p> */}
-                    <form className="forms-sample" onSubmit={HandleSubmit}>
+                    <form className="forms-sample" onSubmit={HandleSubmit}  method="POST"  enctype="multipart/form-data">
                       <div className="form-group">
                         <label htmlFor="exampleInputName1">Name</label>
                         <input type="text" className="form-control" id="exampleInputName1" placeholder="Name" onChange={(e) => setName(e.target.value) } />
@@ -57,7 +61,7 @@ function AddEmp() {
                       </div>
                       <div className="form-group">
                         <label htmlFor="exampleSelectGender">Gender</label>
-                        <select className="form-select" id="exampleSelectGender" onChange={(e) => setGender(e.target.value) }>
+                        <select className="form-select" id="exampleSelectGender" value={'male'}  defaultValue={'male'} onChange={(e) => setGender(e.target.value) }>
                           <option value='male'>Male</option>
                           <option value='female'>Female</option>
                         </select>
@@ -82,7 +86,7 @@ function AddEmp() {
 
                       <div className="form-group">
                         <label>Profile Upload</label>
-                        <input type="file" name="img" className="file-upload-default" onChange={(e) => setUpload(e.target.files) }/>
+                        <input type="file" name="img" className="file-upload-default" onChange={(e) => setUpload(e.target.files[0]) }/>
                         <div className="input-group col-xs-12">
                           <input type="text" className="form-control file-upload-info " disabled={true} placeholder="Upload Image" />
                           <span className="input-group-append">
