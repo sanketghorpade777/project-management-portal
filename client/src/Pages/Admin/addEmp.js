@@ -16,19 +16,30 @@ function AddEmp() {
   const HandleSubmit = async(e) => {
     e.preventDefault();
      try{
+      console.log(name,email,password,gender,dept,upload,city,address);
+          let formData  = { 
+          name :name,
+          email :email,
+          password :password,
+          gender :gender,
+          dept :dept,
+          upload :upload,
+          city :city,
+          address :address,
+        }
+        console.log(formData);
 
-
-  
-
-      const Response =  await axios.post('api/admin/add-emp',{
-        name,email,password,gender,dept,upload,city,address
+      const Response =  await axios.post('api/admin/add-emp',formData,{
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
         console.log(Response);
       }catch(e){
          console.log(e);
       }
 
-    console.log(name,email,password,gender,dept,upload,city,address);
+  
 
  }
 
@@ -46,7 +57,7 @@ function AddEmp() {
                   <div className="card-body">
                     <h4 className="card-title">Add New Employee</h4>
                     {/* <p className="card-description"> Add Employee </p> */}
-                    <form className="forms-sample" onSubmit={HandleSubmit}  method="POST"  enctype="multipart/form-data">
+                    <form className="forms-sample" onSubmit={HandleSubmit}  encType={'multipart/form-data'}>
                       <div className="form-group">
                         <label htmlFor="exampleInputName1">Name</label>
                         <input type="text" className="form-control" id="exampleInputName1" placeholder="Name" onChange={(e) => setName(e.target.value) } />
@@ -62,25 +73,25 @@ function AddEmp() {
                       <div className="form-group">
                         <label htmlFor="exampleSelectGender">Gender</label>
                         <select className="form-select" id="exampleSelectGender" value={'male'}  defaultValue={'male'} onChange={(e) => setGender(e.target.value) }>
-                          <option value='male'>Male</option>
-                          <option value='female'>Female</option>
+                          <option Value='male'>Male</option>
+                          <option Value='female'>Female</option>
                         </select>
                       </div>
 
                       <div className="form-group">
                         <label htmlFor="exampleSelectGender">Department</label>
-                        <select className="form-select" id="exampleSelectGender" onChange={(e) => setDept(e.target.value) }>
-                          <option value='dev'>Dev</option>
-                          <option value='design'>Design</option>
-                          <option value='testing'>Testing</option>
-                          <option value='devops'>Devops</option>
-                          <option value='seo'>SEO</option>
+                        <select className="form-select" id="exampleSelectGender" onChange={(e) => setDept(e.target.Value) }>
+                          <option Value='dev'>Dev</option>
+                          <option Value='design'>Design</option>
+                          <option Value='testing'>Testing</option>
+                          <option Value='devops'>Devops</option>
+                          <option Value='seo'>SEO</option>
                         </select>
 
                         
                       </div>
 
-
+              
                 
                  
 

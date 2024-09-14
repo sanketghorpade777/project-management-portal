@@ -2,6 +2,7 @@ const Auth = require('../Models/Auth');
 const jwt = require("jsonwebtoken");
 const {comparePassword} = require('../Helpers/auth');
 const multer = require('multer');
+const User = require('../Models/User');
 
 
 const login = async(req,res) => {
@@ -51,7 +52,31 @@ const login = async(req,res) => {
 
 
 const Add_employee = (req,res) => {
-   console.log(req.files.filename);
+  let fileName = req.files.upload.name;
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/profiles/'); // The folder where files will be saved
+  },
+  filename: function (req, file, cb) {
+    const unique_name = Date.now() + path.extname(file.originalname);
+    cb(null,unique_name);
+  },
+});
+
+
+
+let upload = multer({
+  storage,
+  limit : {fileSize: 100000 * 100},
+}).single('upload');
+
+const employee = new User({
+
+})
+
 
   res.send("passed from Add_employee");
 }
