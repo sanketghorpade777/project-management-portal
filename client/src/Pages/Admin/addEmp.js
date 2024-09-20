@@ -10,31 +10,31 @@ function AddEmp() {
   const [password,setPassword] = useState('');
   const [gender,setGender] = useState('');
   const [dept,setDept] = useState('');
-  const [upload,setUpload] = useState('');
+  const [profile,setProfile] = useState('');
   const [city,setCity] = useState('');
   const [address,setAddress] = useState('');
   const HandleSubmit = async(e) => {
     e.preventDefault();
      try{
-      console.log(name,email,password,gender,dept,upload,city,address);
+      console.log(name,email,password,gender,dept,profile,city,address);
           let formData  = { 
           name :name,
           email :email,
           password :password,
           gender :gender,
           dept :dept,
-          upload :upload,
+          profile :profile,
           city :city,
           address :address,
         }
         console.log(formData);
 
-      const Response =  await axios.post('api/admin/add-emp',formData,{
+      const Response =  await axios.post('/api/admin/add-emp',formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-        console.log(Response);
+        console.log(Response.data);
       }catch(e){
          console.log(e);
       }
@@ -57,7 +57,7 @@ function AddEmp() {
                   <div className="card-body">
                     <h4 className="card-title">Add New Employee</h4>
                     {/* <p className="card-description"> Add Employee </p> */}
-                    <form className="forms-sample" onSubmit={HandleSubmit}  encType={'multipart/form-data'}>
+                    <form className="forms-sample" onSubmit={HandleSubmit} >
                       <div className="form-group">
                         <label htmlFor="exampleInputName1">Name</label>
                         <input type="text" className="form-control" id="exampleInputName1" placeholder="Name" onChange={(e) => setName(e.target.value) } />
@@ -97,7 +97,7 @@ function AddEmp() {
 
                       <div className="form-group">
                         <label>Profile Upload</label>
-                        <input type="file" name="img" className="file-upload-default" onChange={(e) => setUpload(e.target.files[0]) }/>
+                        <input type="file" className="file-upload-default" onChange={(e) => setProfile(e.target.files[0]) }/>
                         <div className="input-group col-xs-12">
                           <input type="text" className="form-control file-upload-info " disabled={true} placeholder="Upload Image" />
                           <span className="input-group-append">

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const {comparePassword} = require('../Helpers/auth');
 const multer = require('multer');
 const User = require('../Models/User');
-
+const path = require('path');
 
 const login = async(req,res) => {
   try{
@@ -52,13 +52,15 @@ const login = async(req,res) => {
 
 
 const Add_employee = (req,res) => {
-  let fileName = req.files.upload.name;
+  try{
+  let fileName = req.files.upload;
 
 
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/profiles/'); // The folder where files will be saved
+    console.log("from upload",req);
+    cb(null, 'uploads'); // The folder where files will be saved
   },
   filename: function (req, file, cb) {
     const unique_name = Date.now() + path.extname(file.originalname);
@@ -68,17 +70,38 @@ const storage = multer.diskStorage({
 
 
 
-let upload = multer({
-  storage,
-  limit : {fileSize: 100000 * 100},
-}).single('upload');
+let uploads = multer({
+  storage:storage,
+  // limit : {fileSize: 100000 * 100},
+}).single('profile');
 
+
+uploads(req,res, async(err) => {
+  if(err){
+    console.log(err);
+  }
+console.log(req.files.profile);
 const employee = new User({
+  name:req.body.name,
+  email:req.body.email,
+  password:req.body.password,
+  gender:req.body.gender,
+  dept:req.body.dept,
+  city:req.body.city,
+  address:req.body.address,
 
 })
 
+ await employee.save();
+})
 
   res.send("passed from Add_employee");
+
+
+}catch(err){
+  console.log(err);
+}
+
 }
 
 

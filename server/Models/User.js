@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema =  mongoose.Schema
 
 const userSchema = new Schema({
-    user_id:{ type:String , required:true},
-     name:{ type:String , required:true},
-    email:{ type:String , required:true},
-    gender: {type:String , required:true},
-    dept: {type:String , required:true},
-    profile: {type:String , required:true},
-    city: {type:String , required:true},
-    address: {type:String , required:true},
+    // user_id:{ type:String , required:false},
+     name:{ type:String , required:false},
+    email:{ type:String , required:false},
+    gender: {type:String , required:false},
+    dept: {type:String , required:false},
+    profile: {type:String , required:false},
+    city: {type:String , required:false},
+    address: {type:String , required:false},
 
 },{timestamps:true})
 

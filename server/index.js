@@ -23,7 +23,7 @@ app.post('/api/admin/add-emp',routes);
 // const authRoutes = require('./Routes/authRoutes');
 // app.use('/api/auth', authRoutes);
 
-app.use(express.static(__dirname));
+app.use('/api/admin/add-emp', express.static('./uploads'));
 // app.get("/*", function(req, res) {
 //   res.sendFile(path.join(__dirname, "index.html"));
 // });
