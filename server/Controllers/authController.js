@@ -53,14 +53,13 @@ const login = async(req,res) => {
 
 const Add_employee = (req,res) => {
   try{
-  let fileName = req.files.upload;
-
-
+  let fileName = req.body;
+  console.log(req.body);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log("from upload",req);
-    cb(null, 'uploads'); // The folder where files will be saved
+    // console.log("from upload",req);
+    cb(null, 'uploads/profiles'); // The folder where files will be saved
   },
   filename: function (req, file, cb) {
     const unique_name = Date.now() + path.extname(file.originalname);
@@ -72,7 +71,7 @@ const storage = multer.diskStorage({
 
 let uploads = multer({
   storage:storage,
-  // limit : {fileSize: 100000 * 100},
+  limit : {fileSize: 100000 * 100},
 }).single('profile');
 
 
@@ -80,7 +79,8 @@ uploads(req,res, async(err) => {
   if(err){
     console.log(err);
   }
-console.log(req.files.profile);
+console.log(req.file);
+
 const employee = new User({
   name:req.body.name,
   email:req.body.email,
