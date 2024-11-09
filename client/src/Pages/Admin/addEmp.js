@@ -27,11 +27,13 @@ function AddEmp() {
           city :city,
           address :address,
         }
-        console.log(formData);
-
-      const Response =  await axios.post('/api/admin/add-emp',formData,{
+        const data = JSON.stringify(formData);
+        console.log(data);
+      const Response =  await axios.post('/api/admin/add-emp',data,{
         headers: {
           'Content-Type': 'multipart/form-data',
+        
+      
         },
       });
         console.log(Response.data);
@@ -72,15 +74,17 @@ function AddEmp() {
                       </div>
                       <div className="form-group">
                         <label htmlFor="exampleSelectGender">Gender</label>
-                        <select className="form-select" id="exampleSelectGender" value={'male'}  defaultValue={'male'} onChange={(e) => setGender(e.target.value) }>
+                        <select className="form-select" id="exampleSelectGender"  defaultValue={''} onChange={(e) => setGender(e.target.value) }>
+                        <option Value='' selected>Select Gender</option>
                           <option Value='male'>Male</option>
                           <option Value='female'>Female</option>
                         </select>
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="exampleSelectGender">Department</label>
-                        <select className="form-select" id="exampleSelectGender" onChange={(e) => setDept(e.target.Value) }>
+                        <label htmlFor="exampleSelectDept">Department</label>
+                        <select className="form-select" id="exampleSelectDept" defaultValue={''} onChange={(e) => setDept(e.target.value) }>
+                        <option Value='' selected>Select Department</option>
                           <option Value='dev'>Dev</option>
                           <option Value='design'>Design</option>
                           <option Value='testing'>Testing</option>
@@ -97,14 +101,19 @@ function AddEmp() {
 
                       <div className="form-group">
                         <label>Profile Upload</label>
-                        <input type="file" className="file-upload-default" onChange={(e) => setProfile(e.target.files[0]) }/>
+                        <input type="file" id="upload" className="file-upload-default" onChange={(e) => setProfile(e.target.files[0]) }/>
                         <div className="input-group col-xs-12">
                           <input type="text" className="form-control file-upload-info " disabled={true} placeholder="Upload Image" />
                           <span className="input-group-append">
-                            <button className="file-upload-browse btn btn-gradient-primary py-1" type="button">Upload Profile</button>
+                            {/* <button className="btn btn-gradient-primary py-1 file-upload-browse" type="button">Upload Profile</button> */}
+                            <input type="file"  hidden/>
+                            <label for="upload" className='label'>Choose file</label>
                           </span>
                         </div>
                       </div>
+
+               
+
                       <div className="form-group">
                         <label htmlFor="exampleInputCity1">City</label>
                         <input type="text" className="form-control" id="exampleInputCity1" placeholder="Location" onChange={(e) => setCity(e.target.value) }/>

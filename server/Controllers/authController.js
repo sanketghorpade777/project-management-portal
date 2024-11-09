@@ -1,6 +1,6 @@
 const Auth = require('../Models/Auth');
 const jwt = require("jsonwebtoken");
-const {comparePassword} = require('../Helpers/auth');
+const {comparePassword, hashPassword} = require('../Helpers/auth');
 const multer = require('multer');
 const User = require('../Models/User');
 const path = require('path');
@@ -8,10 +8,10 @@ const path = require('path');
 const login = async(req,res) => {
   try{
   const {username,password,usertype} = req.body;
- 
+
 
       const userDetails = await Auth.findOne({email:username});
-
+ console.log(userDetails);
       if(!userDetails){
         res.status(400).send({message:" Record Not Found" , success:false});
       }
@@ -53,12 +53,14 @@ const login = async(req,res) => {
 
 const Add_employee = (req,res) => {
   try{
-  let fileName = req.body;
-  console.log(req.body);
-
+ const password = req.body;
+  console.log(password);
+// if(req.body.password){
+//   const hashed_password =  hashPassword(req.body.password);
+//   console.log(hashed_password);
+// }
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // console.log("from upload",req);
     cb(null, 'uploads/profiles'); // The folder where files will be saved
   },
   filename: function (req, file, cb) {
@@ -66,7 +68,6 @@ const storage = multer.diskStorage({
     cb(null,unique_name);
   },
 });
-
 
 
 let uploads = multer({
@@ -79,7 +80,10 @@ uploads(req,res, async(err) => {
   if(err){
     console.log(err);
   }
-console.log(req.file);
+
+// making hash password
+
+
 
 const employee = new User({
   name:req.body.name,
@@ -89,7 +93,7 @@ const employee = new User({
   dept:req.body.dept,
   city:req.body.city,
   address:req.body.address,
-
+  profile:"fsdfs",
 })
 
  await employee.save();

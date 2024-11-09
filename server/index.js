@@ -11,17 +11,19 @@ const connectDB = require('./config/db');
 connectDB();
 
 app.use(cors());
-app.use(bodyparser.urlencoded({extended:false}));
+app.use(express.static('public'));
+app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
+// app.use(express.json());
 const routes = require('./Routes/authRoutes');
 
-app.post('/login',routes);
+app.post('/api/login',routes);
 app.post('/api/admin/add-emp',routes);
 
 // const authRoutes = require('./Routes/authRoutes');
 // app.use('/api/auth', authRoutes);
 
-app.use(express.static('public'));
+
 // app.get("/*", function(req, res) {
 //   res.sendFile(path.join(__dirname, "index.html"));
 // });

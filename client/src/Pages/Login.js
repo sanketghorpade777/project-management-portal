@@ -14,7 +14,11 @@ function Login() {
       e.preventDefault();
      try{
 
-      const Response =  await axios.post('/login',{
+      const Response =  await axios.post('/api/login',{
+        headers:{
+              'Content-Type': 'application/json',
+        }
+      },{
           username,password,usertype
         });
           if(Response.data.status === 400){
@@ -59,16 +63,16 @@ function Login() {
               {/* <p className="mb-4">Online Project Management System</p> */}
             </div>
             <form onSubmit={HandleLogin} method="post">
-            <div className="form-group first mb-4">
-                <label htmlFor="usertype">Select User type</label>
-                <select className="form-control" id="usertype" defaultValue={''} onChange={ (e) => setUserType(e.target.value) } required>
-                  <option  className="form-control" Value={''} selected>Select User Type</option>
-                <option  className="form-control" Value={'admin'}>Admin</option>
-                <option  className="form-control" Value={'employee'}>Employee</option>
-                <option  className="form-control" Value={'client'}>Client</option>
-                
-                </select>
-              </div>
+
+
+      <div className="form-group first mb-4">
+      <select style={{backgroundColor:'transparent'}} className="form-select" id="usertype" defaultValue={''} onChange={ (e) => setUserType(e.target.value) } required>
+      <option style={{color:'gray',backgroundColor:'transparent'}} className="form-control" Value={''} >Select User Type</option>
+      <option className="form-control" Value={'admin'}>Admin</option>
+      <option  className="form-control" Value={'employee'}>Employee</option>
+      <option  className="form-control" Value={'client'}>Client</option>
+      </select>
+     </div>
 
               <div className="form-group first">
                 <label htmlFor="username">Username</label>

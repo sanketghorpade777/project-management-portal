@@ -6,7 +6,7 @@ const router = express.Router();
 const controller = require('../Controllers/authController');
 
 
-router.post('/login',controller.login);
+router.post('/api/login',controller.login);
 router.post('/api/admin/add-emp',controller.Add_employee);
 
 
