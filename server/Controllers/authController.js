@@ -8,10 +8,11 @@ const path = require('path');
 const login = async(req,res) => {
   try{
   const {username,password,usertype} = req.body;
+console.log(req.body);
 
-
-      const userDetails = await Auth.findOne({email:username});
- console.log(userDetails);
+      const userDetails = await Auth.findOne({email:req.body.username});
+    
+      console.log(userDetails);
       if(!userDetails){
         res.status(400).send({message:" Record Not Found" , success:false});
       }

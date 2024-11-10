@@ -12,6 +12,7 @@ mongoose.connect(mongo_url);
 try{
       await mongoose.connect(mongo_url);
       console.log("Database Connected Successfully")
+
 }catch(error){
      throw error.message;
 
@@ -21,4 +22,3 @@ try{
 }
 
 module.exports = connectDB;
-
