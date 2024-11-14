@@ -10,16 +10,15 @@ function Login() {
     const [usertype,setUserType] = useState('');
    const [Token,setToken] = useState(null);
     const navigate = useNavigate();
+
   const HandleLogin= async(e) => {
       e.preventDefault();
      try{
-       const LoginDetails = {
-        username:username,
-        password:password,
-        usertype:usertype
-       }
-       const Formdata = JSON.stringify(LoginDetails);
-      const Response =  await axios.post('/api/login',Formdata);
+
+      const Response =  await axios.post('/api/login',
+      {
+        username,password,usertype
+      });
           if(Response.data.status === 400){
             toast.error(Response.data.message);
           }

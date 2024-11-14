@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = process.env.JWT_SECREAT; 
 
@@ -20,7 +20,8 @@ const hashPassword = (password) => {
       })
     }
       const comparePassword = (password,hashed) => {
-        return bcrypt.compare(password,hashed)
+
+        return bcrypt.compare(password,hashed);
       }
 
 

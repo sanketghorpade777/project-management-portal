@@ -1,6 +1,6 @@
 const Auth = require('../Models/Auth');
 const jwt = require("jsonwebtoken");
-const {comparePassword, hashPassword} = require('../Helpers/auth');
+const {comparePassword}  = require('../Helpers/auth');
 const multer = require('multer');
 const User = require('../Models/User');
 const path = require('path');
@@ -8,16 +8,19 @@ const path = require('path');
 const login = async(req,res) => {
   try{
   const {username,password,usertype} = req.body;
-console.log(req.body);
 
-      const userDetails = await Auth.findOne({email:req.body.username});
+      const userDetails = await Auth.findOne({email:username});
     
-      console.log(userDetails);
+  
       if(!userDetails){
         res.status(400).send({message:" Record Not Found" , success:false});
       }
 
-      const verifyPassword =  await comparePassword(password,userDetails.password);
+      const verifyPassword =  await comparePassword(password,String(userDetails.password));
+
+      if(!verifyPassword){
+        res.status(400).send({message:"! Password Not Matched" , success:false});
+      }
        if(verifyPassword && usertype === userDetails.userType){
 
         const token = await jwt.sign({ userId: userDetails._id }, process.env.JWT_SECREAT);
@@ -55,7 +58,7 @@ console.log(req.body);
 const Add_employee = (req,res) => {
   try{
  const password = req.body;
-  console.log(password);
+  console.log(req.body);
 // if(req.body.password){
 //   const hashed_password =  hashPassword(req.body.password);
 //   console.log(hashed_password);

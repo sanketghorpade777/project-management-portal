@@ -7,7 +7,7 @@ import { AuthProvider } from "./AuthContext/authContext";
 import AdminDashboard from './Components/Admin/Dashboard';
 import EmpDashboard from './Components/Employee/Dashboard';
 import ClientDashboard from './Components/Client/Dashboard';
-import AddEmp from "./Pages/Admin/AddEmp";
+import AddEmp  from './Pages/Admin/addEmp';
 
 function App() {
   return (
