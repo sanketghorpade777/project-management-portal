@@ -23,7 +23,7 @@ function App() {
        
        {/* Admin Routes Start */}
        <Route path='/admin-dashboard' element={<AdminDashboard/>} />
-       {/* <Route path='/add-emp' element={<AddEmp/>} /> */}
+       <Route path='/add-emp' element={<AddEmp/>} />
        {/* Admin Routes End */}
 
 
